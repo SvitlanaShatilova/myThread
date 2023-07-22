@@ -1,6 +1,8 @@
 package Homework_2207_2907.Ex1;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**Затримка потоку.
  Необхідно створити три потоки, кожних із цих потоків запустити (наприклад: main, second, first),
@@ -10,15 +12,16 @@ import java.util.Calendar;
  Всі потоки завершили роботу */
 public class Main {
     public static void main(String[] args) {
-        Calendar calendar = Calendar.getInstance();
+
+        String time = new SimpleDateFormat("mm:ss:SSS").format(new Date());
         String mainThreadName = Thread.currentThread().getName();
-        System.out.println("потік " + mainThreadName + " стартував " + calendar.getTime());
+        System.out.println("потік " + mainThreadName + " стартував " + time);
 
         SecondThread secondThread = new SecondThread();
-        FirstTread firstTread = new FirstTread();
-
         secondThread.start();
+        FirstTread firstTread = new FirstTread();
         firstTread.start();
+
 
         while (secondThread.isAlive() == true|| firstTread.isAlive() == true){
 

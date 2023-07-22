@@ -1,7 +1,9 @@
 package Homework_2207_2907.Ex1;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class FirstTread extends Thread{
@@ -9,9 +11,9 @@ public class FirstTread extends Thread{
 
     @Override
     public void run() {
-        Calendar calendar = Calendar.getInstance();
+        String time = new SimpleDateFormat("mm:ss:SSS").format(new Date());
         String threadName = currentThread().getName();
-        System.out.println("потік " + threadName + " стартував " + calendar.getTime());
+        System.out.println("потік " + threadName + " стартував " + time);
         while (count<5){
             System.out.println(++count);
             try{
@@ -20,7 +22,7 @@ public class FirstTread extends Thread{
                 throw new RuntimeException(e);
             }
         }
-        Calendar calendar1 = Calendar.getInstance();
-        System.out.println("потік " + threadName + " фінішував " + calendar1.getTime());
+        String time1 = new SimpleDateFormat("mm:ss:SSS").format(new Date());
+        System.out.println("потік " + threadName + " фінішував " + time1);
     }
 }
