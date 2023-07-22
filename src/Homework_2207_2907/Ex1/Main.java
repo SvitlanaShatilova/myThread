@@ -17,11 +17,11 @@ public class Main {
         String mainThreadName = Thread.currentThread().getName();
         System.out.println("потік " + mainThreadName + " стартував " + time);
 
-        SecondThread secondThread = new SecondThread();
-        secondThread.start();
         FirstTread firstTread = new FirstTread();
-        firstTread.start();
+        SecondThread secondThread = new SecondThread();
 
+        firstTread.start();
+        secondThread.start();
 
         while (secondThread.isAlive() == true|| firstTread.isAlive() == true){
 
