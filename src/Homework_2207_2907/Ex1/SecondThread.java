@@ -1,10 +1,8 @@
-package Homework_2207_2907;
-
+package Homework_2207_2907.Ex1;
 
 import java.util.Calendar;
 
-
-public class FirstTread extends Thread{
+public class SecondThread extends Thread{
     private int count = 0;
 
     @Override
@@ -12,15 +10,18 @@ public class FirstTread extends Thread{
         Calendar calendar = Calendar.getInstance();
         String threadName = currentThread().getName();
         System.out.println("потік " + threadName + " стартував " + calendar.getTime());
+        System.out.println(threadName);
         while (count<5){
             System.out.println(++count);
             try{
-                sleep(200);
+                sleep(1000);
             }catch (InterruptedException e){
                 throw new RuntimeException(e);
             }
         }
         Calendar calendar1 = Calendar.getInstance();
         System.out.println("потік " + threadName + " фінішував " + calendar1.getTime());
+
+
     }
 }
