@@ -17,6 +17,7 @@ public class Main {
         MyThread myThread1 = new MyThread();
         MyThread myThread2 = new MyThread();
         MyThread myThread3 = new MyThread();
+        System.out.println(myThread1.getState());
 
         myThread1.start();
         myThread2.start();
@@ -24,6 +25,7 @@ public class Main {
 
 
         System.out.println("Всі потоки завершили свою роботу");
+
 
     }
 

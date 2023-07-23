@@ -6,7 +6,7 @@ public class MyThread extends Thread {
     @Override
     public void run() {
         String threadName = currentThread().getName();
-        System.out.println(threadName);
+        System.out.println(threadName + threadName);
         while (count<5){
             System.out.println(++count);
             try{

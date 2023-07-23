@@ -27,5 +27,7 @@ public class Main {
 
         }
         System.out.println("Всі потоки завершили роботу");
+        System.out.println(firstTread.getState());
+        System.out.println(secondThread.getState());
     }
 }
