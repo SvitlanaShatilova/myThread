@@ -1,10 +1,5 @@
 package Homework_2207_2907.Ex4_Multithreading;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**Написати багатопоточне додаток наступного функціонала:
@@ -16,32 +11,17 @@ import java.util.concurrent.TimeUnit;
  ID: 63 Date: 2023-07-21 22:11:40
  ID: 74 Date: 2023-07-21 22:11:40*/
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException{
         Class_Id classId = new Class_Id();
-        List<Integer> integerSet = new ArrayList<>();
-       // int val = classId.getingId();
-       // System.out.println(val);
-        int val2 = classId.generationId();
-        System.out.println(val2);
 
-
-
-//        String time = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
-//        System.out.println(time);
-
-        File file = new File("C:\\Users\\User\\IdeaProjects\\myThread\\src\\Homework_2207_2907\\Ex4_Multithreading\\result.txt");
         Thread oneThred = new Thread() {
             public void run() {
                 System.out.println(Thread.currentThread().getName() + " start:");
-                int val = classId.getingId();
-                try {
-                    FileWriter fw = new FileWriter(file, true);
-                    PrintWriter pw = new PrintWriter(fw);
-                    pw.println("ID: " + val + " Date: " + new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date()));
-                    pw.flush();
-                    pw.close();
-                }catch (Exception e){
-                    e.printStackTrace();
+                int count = 0;
+                while (count < 3) {
+                  classId.getingId();
+                  count++;
+
                 }
             }
         };
@@ -49,39 +29,46 @@ public class Main {
         Thread twoThred = new Thread() {
             public void run() {
                 System.out.println(Thread.currentThread().getName() + " start:");
-                while (integerSet.size() < 10){
-                    int val = classId.generationId();
-                    integerSet.add(val);
+                int count = 0;
+                while (count < 10) {
+                    classId.generationId();
+                    count++;
+
                     try {
                         TimeUnit.SECONDS.sleep(2);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-    };
-        Thread threeThred = new Thread() {
-            public void run() {
-                int count = 0;
-                System.out.println(Thread.currentThread().getName() + " start:");
-                while (count < 10){
-                    int val = integerSet.get(0);
-                    classId.setingId(val);
-                    integerSet.remove(0);
-                    count++;
-                    try {
-                        TimeUnit.SECONDS.sleep(10);
-                    } catch (Exception e) {
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
         };
+        Thread threeThred = new Thread() {
+            public void run() {
+                System.out.println(Thread.currentThread().getName() + " start:");
+                int count = 0;
+                while (count < 5) {
+                try {
+                    TimeUnit.SECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                classId.setingId();
+                count++;
+                }
+            }
+       };
 
 
-//        oneThred.start();
-//        twoThred.start();
-//        threeThred.start();
+        oneThred.start();
+        twoThred.start();
+        threeThred.start();
+        oneThred.join();
+        twoThred.join();
+        threeThred.join();
+
+
+        classId.listPrint();
+        classId.readFile();
 
 
     }
