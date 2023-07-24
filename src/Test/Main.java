@@ -5,8 +5,8 @@ public class Main {
        String mainThreadName = Thread.currentThread().getName();
        System.out.println(mainThreadName);
 //
-//        Thread myRun = new Thread(new MyRunnable());
-        //myRun.start();
+        Thread myRun = new Thread(new MyRunnable());
+        myRun.start();
         //myRun.run();
 
 
