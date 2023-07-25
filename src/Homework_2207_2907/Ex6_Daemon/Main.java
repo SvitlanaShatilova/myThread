@@ -8,5 +8,6 @@ public class Main {
         new MyTread_A("Tread_THREE");
         new MyTread_A("Tread_FOUR");
         new MyDaemon();
+
     }
 }
